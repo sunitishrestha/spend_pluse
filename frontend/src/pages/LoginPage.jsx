@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail } from "lucide-react";
 import AuthLayout from "../components/auth/AuthLayout";
 import AuthCard from "../components/auth/AuthCard";
@@ -16,6 +16,7 @@ import { validateEmail } from "../utils/validators";
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "", remember: true });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,6 +36,8 @@ export default function LoginPage() {
     if (Object.values(newErrors).some(Boolean)) return;
 
     console.log("Login data:", form); // FastAPI call goes here later
+
+    navigate("/dashboard");
   };
 
   return (

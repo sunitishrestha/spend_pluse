@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail } from "lucide-react";
 import AuthLayout from "../components/auth/AuthLayout";
 import AuthCard from "../components/auth/AuthCard";
@@ -35,7 +35,7 @@ export default function SignupPage() {
   });
   const [errors, setErrors] = useState({});
   const score = getPasswordStrength(form.password);
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -78,6 +78,7 @@ export default function SignupPage() {
     if (Object.values(newErrors).some(Boolean)) return;
 
     console.log("Signup data:", form); // FastAPI call goes here later
+    navigate("/dashboard");
   };
 
   return (
