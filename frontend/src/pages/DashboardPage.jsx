@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CreditCard,
   PiggyBank,
@@ -10,10 +11,34 @@ import {
   ScanLine,
 } from "lucide-react";
 import StatCard from "../components/dashboard/StatCard";
-import { summary } from "../data/mockData";
+import QuickAddExpense from "../components/dashboard/QuickAddExpense";
+import WeeklyActivity from "../components/dashboard/WeeklyActivity";
+import CategoryBudgets from "../components/dashboard/CategoryBudgets";
+import RecentExpenses from "../components/dashboard/RecentExpenses";
+import InsightCard from "../components/dashboard/InsightCard";
+import HabitCard from "../components/dashboard/HabitCard";
+import { summary, weekly, categories, initialExpenses } from "../data/mockData";
 import { splitMoney } from "../utils/formatMoney";
 
 export default function DashboardPage() {
+  const [expenses, setExpenses] = useState(initialExpenses);
+
+  const addExpense = ({ title, amount }) => {
+    const newExpense = {
+      id: Date.now(),
+      title,
+      amount,
+      when: "Today",
+      category: "Other",
+      source: "manual",
+    };
+    setExpenses([newExpense, ...expenses]); // newest first
+  };
+
+  const deleteExpense = (id) => {
+    setExpenses(expenses.filter((e) => e.id !== id));
+  };
+
   const spent = splitMoney(summary.spent);
   const left = splitMoney(summary.remaining);
   const percentUsed = Math.round((summary.spent / summary.limit) * 100);
@@ -111,6 +136,21 @@ export default function DashboardPage() {
             </span>
           </div>
         </StatCard>
+      </div>
+
+      {/* Main two-column area */}
+      <div className="mt-6 grid gap-6 xl:grid-cols-3">
+        <div className="space-y-6 xl:col-span-2">
+          <QuickAddExpense onAdd={addExpense} />
+          <WeeklyActivity data={weekly} />
+          <RecentExpenses expenses={expenses} onDelete={deleteExpense} />
+        </div>
+
+        <div className="space-y-6">
+          <CategoryBudgets items={categories} />
+          <InsightCard />
+          <HabitCard />
+        </div>
       </div>
     </div>
   );
