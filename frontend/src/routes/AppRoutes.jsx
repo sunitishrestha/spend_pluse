@@ -6,6 +6,9 @@ import DashboardPage from "../pages/DashboardPage";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import AnalyticsPage from "../pages/AnalyticsPage";
+import ExpensesPage from "../pages/ExpensesPage";
+
+import SettingsPage from "../pages/SettingsPage";
 
 export default function AppRoutes() {
   return (
@@ -16,10 +19,12 @@ export default function AppRoutes() {
 
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/expenses" element={<ExpensesPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      <Route path="/analytics" element={<AnalyticsPage />} />
     </Routes>
   );
 }

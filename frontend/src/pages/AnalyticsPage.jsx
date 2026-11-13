@@ -8,7 +8,7 @@ import {
   Wallet,
   Gauge,
 } from "lucide-react";
-import MetricCard from "../components/analytics/MetricCard";
+import MetricCard from "../components/analytics/MatricCard";
 import CategoryDonut from "../components/analytics/CategoryDonut";
 import TrendChart from "../components/analytics/TrendChart";
 import BudgetAllocations from "../components/analytics/BudgetAllocations";

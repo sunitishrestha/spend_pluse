@@ -5,7 +5,7 @@ import {
   Ticket,
   Zap,
   ShoppingCart,
-  CircleDollarSign,
+  CircleDollarSign,House, Car
 } from "lucide-react";
 
 export const CATEGORY_STYLES = {
@@ -56,5 +56,18 @@ export const CATEGORY_STYLES = {
     chip: "bg-slate-100 text-slate-700",
     bar: "bg-slate-500",
     text: "text-slate-600",
+  },
+
+  "Housing & Utilities": {
+    icon: House,
+    chip: "bg-stone-100 text-stone-700",
+    bar: "bg-amber-700",
+    text: "text-stone-700",
+  },
+  Transport: {
+    icon: Car,
+    chip: "bg-blue-50 text-blue-700",
+    bar: "bg-blue-600",
+    text: "text-blue-700",
   },
 };
